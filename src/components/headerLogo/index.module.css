@@ -1,0 +1,22 @@
+.branding {
+  float: left; 
+}
+.branding .logo, .site-header .branding .logo-type {
+  display: inline-block;
+  vertical-align: middle; 
+}
+.branding .logo {
+  margin-right: 10px; 
+}
+.branding .site-title {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-size: 1.1428571429em;
+  color: white; 
+}
+.branding .site-description {
+  font-size: 10px;
+  font-size: 0.7142857143em;
+  display: block;
+  color: #bfc1c8; 
+}

@@ -1,0 +1,147 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  *zoom: 1; 
+}
+.container:after {
+  content: " ";
+  clear: both;
+  display: block;
+  overflow: hidden;
+  height: 0; 
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px; 
+  } 
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px; 
+  } 
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px; 
+  } 
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  *zoom: 1; 
+}
+.container-fluid:after {
+  content: " ";
+  clear: both;
+  display: block;
+  overflow: hidden;
+  height: 0; 
+}
+
+.forecast-container {
+  width: 100%;
+  background: #323544;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: -150px;
+  margin-bottom: 50px; 
+}
+.forecast {
+  display: table-cell;
+  vertical-align: top; 
+}
+.forecast:nth-child(even) {
+  background-color: #262936; 
+}
+@media screen and (max-width: 990px) {
+  .forecast {
+    display: block;
+    width: 16.6667%;
+    float: left; 
+  } 
+}
+.today {
+  width: 420px; 
+}
+.forecast-header {
+  *zoom: 1; 
+}
+.forecast-header:after {
+  content: " ";
+  clear: both;
+  display: block;
+  overflow: hidden;
+  height: 0; 
+}
+.day {
+  float: left; 
+}
+.date {
+  float: right; 
+}
+.forecast-content {
+  text-align: left;
+  padding-top: 30px;
+  padding-bottom: 30px; 
+}
+.location {
+  font-size: 18px;
+  font-size: 1.2857142857em;
+  font-weight: 400; 
+}
+.forecast-icon {
+  display: inline-block;
+  vertical-align: middle; 
+}
+.num {
+  font-size: 90px;
+  font-size: 6.4285714286rem;
+  margin-right: 30px; 
+}
+.forecast.today span {
+  margin-right: 20px; 
+}
+.forecast.today span img {
+  margin-right: 5px;
+  vertical-align: middle; 
+}
+@media screen and (max-width: 990px) {
+  .forecast.today {
+    display: block;
+    width: 100%; 
+  } 
+}
+.forecast-header {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  font-weight: 400; 
+}
+.forecast-icon {
+  height: 50px; 
+}
+.forecast-content {
+  padding: 50px 20px 10px;
+  text-align: center; 
+}
+.forecast-icon {
+  margin-bottom: 20px;
+}
+.degree {
+  font-size: 24px;
+  font-size: 1.7142857143em;
+  color: white;
+  font-weight: 700; 
+}
+.forecast-content small {
+  font-size: 16px;
+  font-size: 1.1428571429em; 
+}
