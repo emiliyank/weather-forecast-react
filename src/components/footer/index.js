@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './index.module.css'
 import cx from 'classnames'
+import 'font-awesome/css/font-awesome.min.css'
 
 const Footer = () => {
 	return(
@@ -15,10 +16,9 @@ const Footer = () => {
 					</div>
 					<div className={cx(styles["col-md-3"], styles["col-md-offset-1"])}>
 						<div className={styles["social-links"]}>
-							<a href="#"><i className={cx(styles["fa"], styles["fa-facebook"])}></i></a>
-							<a href="#"><i className={cx(styles["fa"], styles["fa-twitter"])}></i></a>
-							<a href="#"><i className={cx(styles["fa"], styles["fa-google-plus"])}></i></a>
-							<a href="#"><i className={cx(styles["fa"], styles["fa-pinterest"])}></i></a>
+							<a href="#"><i className="fa fa-facebook"></i></a>
+							<a href="#"><i className="fa fa-twitter"></i></a>
+							<a href="#"><i className="fa fa-pinterest"></i></a>
 						</div>
 					</div>
 				</div>

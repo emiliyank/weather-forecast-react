@@ -10,8 +10,6 @@ const mainNavigation = () => {
 				<ul className={styles["menu"]}>
 					<li className={cx(styles["menu-item"], styles["current-menu-item"])}><a href="#">Home</a></li>
 					<li className={styles["menu-item"]}><a href="#">News</a></li>
-						<li className={styles["menu-item"]}><a href="#">Live cameras</a></li>
-					<li className={styles["menu-item"]}><a href="#">Photos</a></li>
 				</ul>
 			</div>
 
