@@ -8,8 +8,8 @@ const mainNavigation = () => {
 			<div className={styles["main-navigation"]}>
 				<button type="button" className={styles["menu-toggle"]}><i className={styles["fa fa-bars"]}></i></button>
 				<ul className={styles["menu"]}>
-					<li className={cx(styles["menu-item"], styles["current-menu-item"])}><a href="#">Home</a></li>
-					<li className={styles["menu-item"]}><a href="#">News</a></li>
+					<li className={cx(styles["menu-item"], styles["current-menu-item"])}><a href="/">Home</a></li>
+					<li className={styles["menu-item"]}><a href="/news">News</a></li>
 				</ul>
 			</div>
 
