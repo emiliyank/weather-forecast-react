@@ -35,3 +35,12 @@
   border-radius: 30px;
   color: white; 
 }
+
+.entry-subheader{
+  display: flex;
+  font-style: italic;
+}
+
+.entry-date{
+  margin-left: auto;
+}

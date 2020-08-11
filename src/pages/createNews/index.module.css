@@ -1,0 +1,55 @@
+.fullwidth-block {
+  padding: 70px 0; 
+  background-color: #262936;
+}
+.fullwidth-block .section-title {
+    font-size: 36px;
+    font-size: 2.5714285714em;
+    font-weight: 300;
+    color: white; 
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  *zoom: 1;
+}
+.container:after {
+  content: " ";
+  clear: both;
+  display: block;
+  overflow: hidden;
+  height: 0; 
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px; 
+  } 
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px; 
+  } 
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px; 
+  } 
+}
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+  *zoom: 1; 
+}
+  .row:after {
+    content: " ";
+    clear: both;
+    display: block;
+    overflow: hidden;
+    height: 0; 
+}
+
+.errors{
+  color: red
+}

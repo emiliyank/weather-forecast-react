@@ -4,42 +4,44 @@ import Footer from '../../components/footer'
 import styles from './index.module.css'
 import cx from 'classnames'
 
-class LoginPage extends Component
+class CreateNews extends Component
 {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			email: "",
-			password: "",
+			title: "",
+			content: "",
 			errors: ""
 		}
+		console.log(document.cookie)
 	}
 
 	handleChange = (event, type) => {
-		const loginState = {}
-		loginState[type] = event.target.value
+		const newState = {}
+		newState[type] = event.target.value
 
-		this.setState(loginState)
+		this.setState(newState)
 	}
 
 	handleSubmit = async (event) => {
 	    event.preventDefault()
 
 	    const {
-	      email,
-	      password
+	      title,
+	      content
 	    } = this.state
 
 	    try{
-	    	const promise = await fetch('http://localhost:8000/api/login', {
+	    	const promise = await fetch('http://localhost:8000/api/news/store', {
 		    	method: 'POST',
 		    	body: JSON.stringify({
-			        email,
-			        password
+			        title,
+			        content
 			    }), 
 			    headers: {
-			    	'Content-Type': 'application/json'
+			    	'Content-Type': 'application/json',
+			    	'Authorization': 'bearer Djibri' 
 			    }
 			})
 			console.log(promise)
@@ -49,24 +51,20 @@ class LoginPage extends Component
 			const authToken = response.token
 			document.cookie = `x-auth-token=${authToken}`
 
-			if(authToken){
-				this.props.history.push('/')
+			if(promise.status == 200 || promise.status == 201){
+				this.props.history.push('/news')
 			} else {
-				const loginState = {}
-				if(response.message == 'Unauthorized'){
-					loginState['errors'] = "Грешен потребител и/или парола!"
-				} else {
-					loginState['errors'] = JSON.stringify(response.message)
-				}
+				const newState = {}
+				newState['errors'] = 'Грешка при попълване на формата!'
 		    	
-		    	this.setState(loginState)
+		    	this.setState(newState)
 		    	console.log(this.state)
 			}
 	    } catch(e) {
 	    	console.log(e)
-	    	const loginState = {}
-	    	loginState['errors'] = e
-	    	this.setState(loginState)
+	    	const newState = {}
+	    	newState['errors'] = e
+	    	this.setState(newState)
 	    	console.log(this.state)
 	    }
 	}
@@ -86,16 +84,18 @@ class LoginPage extends Component
 							{this.state.errors}
 						</div>
 				    	
-				    	Login Form
+				    	Add News
 				    	<form onSubmit={this.handleSubmit}>
 				    		<p>
-				    			<input type="text" name="email" onChange={(e) => this.handleChange(e, 'email')} placeholder="Email" id="email" />
+				    			<input type="text" name="title" onChange={(e) => this.handleChange(e, 'title')} placeholder="Title" id="title" />
 				    		</p>
 				    		<p>
-				    			<input type="password" name="password" onChange={(e) => this.handleChange(e, 'password')} placeholder="Password" id="password" />
+				    			<textarea  name="content" onChange={(e) => this.handleChange(e, 'content')} placeholder="Content" id="content">
+				    				
+				    			</textarea>
 				    		</p>
 				    		<p>
-				    			<input type="submit" name="Login" value="Login"/>
+				    			<input type="submit" name="Save" value="Save"/>
 				    		</p>
 				    	</form>
 				    </div>
@@ -107,4 +107,4 @@ class LoginPage extends Component
 	}
 }
 
-export default LoginPage
+export default CreateNews
