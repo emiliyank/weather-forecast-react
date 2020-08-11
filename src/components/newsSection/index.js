@@ -4,7 +4,7 @@ import SingleNews from '../singleNews'
 
 const NewsSection = () => {
 	return (
-		<div className={styles["fullwidth-block"]} data-bg-color="#262936">
+		<div className={styles["fullwidth-block"]}>
 			<div className={styles["container"]}>
 				<div className={styles["row"]}>
 					<SingleNews date="5-Oct" title="News 1" content="lorem impsum" />
