@@ -1,22 +1,39 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import styles from './index.module.css'
 import cx from 'classnames'
+import UserContext from '../../context'
+import getNavigationLinks from '../../utils/navigationLinks.js' 
 
-const mainNavigation = () => {
-	return(
-		<div>
-			<div className={styles["main-navigation"]}>
-				<button type="button" className={styles["menu-toggle"]}><i className={styles["fa fa-bars"]}></i></button>
-				<ul className={styles["menu"]}>
-					<li className={cx(styles["menu-item"], styles["current-menu-item"])}><a href="/">Home</a></li>
-					<li className={styles["menu-item"]}><a href="/news">News</a></li>
-					<li className={styles["menu-item"]}><a href="/create-news">Create News</a></li>
-				</ul>
+class mainNavigation extends Component 
+{
+	static contextType = UserContext
+
+	render(){
+		const {
+			loggedIn,
+			user
+		} = this.context
+
+		const links = getNavigationLinks(loggedIn, user)
+
+		return(
+			<div>
+				<div className={styles["main-navigation"]}>
+					<button type="button" className={styles["menu-toggle"]}><i className={styles["fa fa-bars"]}></i></button>
+					<ul className={styles["menu"]}>
+						{
+							links.map(navElement => {
+								return (<li key={navElement.title} className={styles["menu-item"]}><Link to={navElement.link}>{navElement.title}</Link></li>)
+							})
+						}
+					</ul>
+				</div>
+
+				<div className="mobile-navigation"></div>
 			</div>
-
-			<div className="mobile-navigation"></div>
-		</div>
-	)
+		)
+	}
 }
 
 export default mainNavigation

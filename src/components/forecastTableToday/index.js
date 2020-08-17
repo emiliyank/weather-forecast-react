@@ -76,7 +76,6 @@ class ForecastTableToday extends Component
 	}
 
 	printDate = () => {
-		console.log(this.state.forecast.DailyForecasts)
 		if(this.state.forecast.DailyForecasts){
 			let date = new Date(this.state.forecast.DailyForecasts[0].Date)
 			let month = date.getMonth() + 1
