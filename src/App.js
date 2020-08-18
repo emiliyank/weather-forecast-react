@@ -4,6 +4,7 @@ import './App.css'
 import Navigation from './navigation'
 import UserContext from './context'
 import { BrowserRouter } from 'react-router-dom'
+import getCookie from './utils/cookie'
 
 
 class App extends Component
@@ -36,6 +37,30 @@ class App extends Component
 
 	componentDidMount(){
 	    document.title = "Weather Forecasts App"
+
+	    const token = getCookie('x-auth-token')
+
+	    if(!token){
+	    	this.logOut()
+	    	return
+	    }
+
+	    fetch('http://localhost:8000/api/me', {
+	    	method: 'POST',
+	    	body: JSON.stringify({
+	    		token
+	    	}),
+	    	headers: {
+			    'Content-Type': 'application/json'
+			}
+	    }).then(promise => {
+	    	return promise.json()
+	    }).then(response => {
+	    	if(response.id){
+	    		this.logIn(response.user)
+	    	}
+	    })
+
 	}
 
 	render(){
