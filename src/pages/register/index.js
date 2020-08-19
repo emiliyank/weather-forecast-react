@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import Header from '../../components/header'
 import Footer from '../../components/footer'
@@ -20,7 +20,6 @@ const RegisterPage = () => {
 	    event.preventDefault()
 
 	    try{
-	    	console.log(password + ' = ' + passwordConfirmation)
 	    	const promise = await fetch('http://localhost:8000/api/register', {
 		    	method: 'POST',
 		    	body: JSON.stringify({
@@ -53,6 +52,10 @@ const RegisterPage = () => {
 	    	console.log('Error ', e)
 	    }
 	}
+
+	useEffect(() => {
+	    document.title = `Weather Forecasts App - Register`;
+	});
 
 	return (
 	  <div className={styles["site-content"]}>

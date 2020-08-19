@@ -15,12 +15,9 @@ class NewsList extends Component
     	this.state = {
 	      newsList: []
 	    }
-	    console.log('constructor: ')
-		console.log(this.state)
   	}
 
 	fetchNews = async () => {
-		console.log('fetchNews()...')
 	    //Fetch all news
 	    const promise = await fetch('http://localhost:8000/api/news', {
 			    method: 'GET',
@@ -35,11 +32,12 @@ class NewsList extends Component
 	      	<NewsPost
 	      		key={index}
 				title={news.title}
-				author={news.author ? news.author.name : 'няма'}
+				author={news.author}
 				date={news.created_at}
 				image={FeaturedImage3}
 				content={news.content}
-				link='/news/1'
+				id={news.id}
+				showMore={true}
 			/>
 	      ))
 	    })
@@ -57,7 +55,7 @@ class NewsList extends Component
 						<div className={cx(styles["content"], styles["col-md-8"])}>
 							{this.state.newsList}
 						</div>
-						<HotNewsSidebar/>
+						<HotNewsSidebar count={5}/>
 					</div>
 				</div>
 			</div>

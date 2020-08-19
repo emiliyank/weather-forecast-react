@@ -55,9 +55,9 @@ class LoginPage extends Component
 
 			if(authToken){
 				const user = {
-					'user_id': response.user_id,
-					'user_email': response.user_email,
-					'usernames': response.usernames 
+					'id': response.user_id,
+					'email': response.user_email,
+					'name': response.usernames 
 				}
 				this.context.logIn(user)
 				this.props.history.push('/')

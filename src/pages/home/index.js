@@ -24,7 +24,7 @@ class Home extends Component
 	    	<Header />
 	    	<FindLocation />
 	    	<ForecastTable />
-	    	<NewsSection />
+	    	<NewsSection count={3}/>
 	    	<FeaturesSection />
 	    	<Footer />
 	    </div>

@@ -3,6 +3,9 @@ import {Switch, Route} from 'react-router-dom'
 
 import Home from './pages/home'
 import News from './pages/news'
+import SingleNews from './pages/singleNews'
+import NewsUpdate from './pages/newsUpdate'
+import NewsDelete from './pages/newsDelete'
 import LoginPage from './pages/login'
 import RegisterPage from './pages/register'
 import LogoutPage from './pages/logout'
@@ -17,7 +20,10 @@ class Navigation extends Component
 		return(
 			<Switch>
 				<Route path="/" exact component={Home} activeClassName="activeNav"/>
-				<Route path="/news" component={News} activeClassName="activeNav"/>
+				<Route path="/news" component={News} />
+				<Route path="/singlenews/:id" component={SingleNews} />
+				<Route path="/updatenews/:id" component={NewsUpdate} />
+				<Route path="/deletenews/:id" component={NewsDelete} />
 				<Route path="/create-news" component={CreateNews}/>
 				<Route path="/login" component={LoginPage}/>
 				<Route path="/register" component={RegisterPage}/>

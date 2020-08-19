@@ -5,7 +5,7 @@ import UserContext from '../../context'
 import styles from './index.module.css'
 import cx from 'classnames'
 
-class CreateNews extends Component
+class NewsUpdate extends Component 
 {
 	constructor(props) {
 		super(props)
@@ -28,27 +28,23 @@ class CreateNews extends Component
 
 	handleSubmit = async (event) => {
 	    event.preventDefault()
-
+	    
+	    const { id } = this.props.match.params
+	    
 	    const {
 	      title,
 	      content
 	    } = this.state
 
-	    let author_id = null
-	    if(this.context.user){
-	    	author_id = this.context.user.id
-	    }
-
 	    try{
-	    	const promise = await fetch('http://localhost:8000/api/news/store', {
-		    	method: 'POST',
+	    	const promise = await fetch(`http://localhost:8000/api/news/update/${id}`, {
+		    	method: 'PUT',
 		    	body: JSON.stringify({
 			        title,
-			        content,
-			        author_id
+			        content
 			    }), 
 			    headers: {
-			    	'Content-Type': 'application/json'
+			    	'Content-Type': 'application/json',
 			    }
 			})
 			const response = await promise.json()
@@ -71,11 +67,38 @@ class CreateNews extends Component
 	    }
 	}
 
+	fetchNews = async (id) => {
+	  const promise = await fetch(`http://localhost:8000/api/news/${id}`)
+	  const news = await promise.json()
+	  console.log('fetchNews()')
+	  console.log(promise)
+	  console.log(news)
+	  return news
+	}
+
+	getNews = async (id) => {
+		const singleNews = await this.fetchNews(id)
+		console.log('getNews()')
+		console.log(singleNews.news)
+
+
+		this.setState({
+	      	title: singleNews.news.title,
+			content: singleNews.news.content
+	    })
+	}
+	
 	componentDidMount(){
+		const { id } = this.props.match.params
+		this.getNews(id)
+
 	    document.title = "Weather Forecasts App - Create News"
+
+	    
 	}
 
 	render(){
+		console.log(this.state)
 	  return (
 	    <div className="site-content">
 	    	<Header />
@@ -86,18 +109,18 @@ class CreateNews extends Component
 							{this.state.errors}
 						</div>
 				    	
-				    	Add News
+				    	Edit News
 				    	<form onSubmit={this.handleSubmit}>
 				    		<p>
-				    			<input type="text" name="title" onChange={(e) => this.handleChange(e, 'title')} placeholder="Title" id="title" />
+				    			<input type="text" name="title" onChange={(e) => this.handleChange(e, 'title')} value={this.state.title} id="title" />
 				    		</p>
 				    		<p>
-				    			<textarea  name="content" onChange={(e) => this.handleChange(e, 'content')} placeholder="Content" id="content">
+				    			<textarea  name="content" onChange={(e) => this.handleChange(e, 'content')} value={this.state.content} id="content">
 				    				
 				    			</textarea>
 				    		</p>
 				    		<p>
-				    			<input type="submit" name="Save" value="Save"/>
+				    			<input type="submit" name="Update" value="Update"/>
 				    		</p>
 				    	</form>
 				    </div>
@@ -107,6 +130,7 @@ class CreateNews extends Component
 	    </div>
 	  )
 	}
+	
 }
 
-export default CreateNews
+export default NewsUpdate
