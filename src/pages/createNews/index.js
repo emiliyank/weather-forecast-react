@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Header from '../../components/header'
 import Footer from '../../components/footer'
+import UserContext from '../../context' 
 import styles from './index.module.css'
 import cx from 'classnames'
 
@@ -17,6 +18,8 @@ class CreateNews extends Component
 		console.log(document.cookie)
 	}
 
+	static contextType = UserContext
+
 	handleChange = (event, type) => {
 		const newState = {}
 		newState[type] = event.target.value
@@ -32,12 +35,22 @@ class CreateNews extends Component
 	      content
 	    } = this.state
 
+	    let author_id = null
+	    if(this.context.user){
+	    	author_id = this.context.user.user_id
+	    }
+	    
+
+	    console.log('create news:')
+	    console.log(author_id)
+
 	    try{
 	    	const promise = await fetch('http://localhost:8000/api/news/store', {
 		    	method: 'POST',
 		    	body: JSON.stringify({
 			        title,
-			        content
+			        content,
+			        author_id
 			    }), 
 			    headers: {
 			    	'Content-Type': 'application/json',
@@ -70,7 +83,7 @@ class CreateNews extends Component
 	}
 
 	componentDidMount(){
-	    document.title = "Weather Forecasts App - Login"
+	    document.title = "Weather Forecasts App - Create News"
 	}
 
 	render(){

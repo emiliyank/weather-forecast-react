@@ -3,6 +3,7 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import styles from './index.module.css'
 import cx from 'classnames'
+import UserContext from '../../context' 
 
 class LoginPage extends Component
 {
@@ -15,6 +16,8 @@ class LoginPage extends Component
 			errors: ""
 		}
 	}
+
+	static contextType = UserContext
 
 	handleChange = (event, type) => {
 		const loginState = {}
@@ -31,6 +34,8 @@ class LoginPage extends Component
 	      password
 	    } = this.state
 
+	    //TODO: validate - email & pass are NOT empty
+
 	    try{
 	    	const promise = await fetch('http://localhost:8000/api/login', {
 		    	method: 'POST',
@@ -42,14 +47,19 @@ class LoginPage extends Component
 			    	'Content-Type': 'application/json'
 			    }
 			})
-			console.log(promise)
-
 
 			const response = await promise.json()
 			const authToken = response.token
+			
 			document.cookie = `x-auth-token=${authToken}`
 
 			if(authToken){
+				const user = {
+					'user_id': response.user_id,
+					'user_email': response.user_email,
+					'usernames': response.usernames 
+				}
+				this.context.logIn(user)
 				this.props.history.push('/')
 			} else {
 				const loginState = {}
@@ -76,6 +86,7 @@ class LoginPage extends Component
 	}
 
 	render(){
+		console.log(this.context)
 	  return (
 	    <div className="site-content">
 	    	<Header />
