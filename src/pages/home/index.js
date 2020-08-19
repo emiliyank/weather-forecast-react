@@ -6,7 +6,7 @@ import Forecast from '../../components/forecast'
 import NewsSection from '../../components/newsSection'
 import FeaturesSection from '../../components/featuresSection'
 import Footer from '../../components/footer'
-import UserContext from '../../context' 
+import AppContext from '../../context' 
 import './index.module.css'
 
 
@@ -16,7 +16,7 @@ class Home extends Component
 	    document.title = "Weather Forecasts App"
 	}
 
-	static contextType = UserContext
+	static contextType = AppContext
 
 	render(){		
 	  return (

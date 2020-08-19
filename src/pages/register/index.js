@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import Header from '../../components/header'
 import Footer from '../../components/footer'
-import UserContext from '../../context'
+import AppContext from '../../context'
 import styles from './index.module.css'
 import cx from 'classnames'
 
@@ -13,14 +13,14 @@ const RegisterPage = () => {
   	const [passwordConfirmation, setPasswordConfirmation] = useState('')
   	const [errors, setErrors] = useState('')
 
-  	const context = useContext(UserContext)
+  	const context = useContext(AppContext)
   	const history = useHistory()
 
 	const handleSubmit = async (event) => {
 	    event.preventDefault()
 
 	    try{
-	    	const promise = await fetch('http://localhost:8000/api/register', {
+	    	const promise = await fetch(`${context.backendApi}/register`, {
 		    	method: 'POST',
 		    	body: JSON.stringify({
 		    		name,

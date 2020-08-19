@@ -19,57 +19,55 @@ class ForecastTableToday extends Component
 	getForecast = async () => {
 		//TODO: fetch location (by IP) instead of hardcoding 51097
       //Daily forecast.
-      // const promise = await fetch('http://dataservice.accuweather.com/forecasts/v1/daily/1day/51097?apikey=BOqlnuPBUcz9Kiv0LF4dezXCbnlAYogU&language=en-us&details=false&metric=true')
-      // const forecastResponse = await promise.json()
-      const forecastResponse = {
-			  "Headline": {
-			    "EffectiveDate": "2020-08-05T08:00:00+03:00",
-			    "EffectiveEpochDate": 1596603600,
-			    "Severity": 5,
-			    "Text": "сряда: Гръмотевични бури",
-			    "Category": "thunderstorm",
-			    "EndDate": "2020-08-05T20:00:00+03:00",
-			    "EndEpochDate": 1596646800,
-			    "MobileLink": "http://m.accuweather.com/bg/bg/sofia/51097/extended-weather-forecast/51097?unit=c",
-			    "Link": "http://www.accuweather.com/bg/bg/sofia/51097/daily-weather-forecast/51097?unit=c"
-			  },
-			  "DailyForecasts": [
-			    {
-			      "Date": "2020-08-02T07:00:00+03:00",
-			      "EpochDate": 1596340800,
-			      "Temperature": {
-			        "Minimum": {
-			          "Value": 12,
-			          "Unit": "C",
-			          "UnitType": 17
-			        },
-			        "Maximum": {
-			          "Value": 25.8,
-			          "Unit": "C",
-			          "UnitType": 17
-			        }
-			      },
-			      "Day": {
-			        "Icon": 1,
-			        "IconPhrase": "Слънчево",
-			        "HasPrecipitation": false
-			      },
-			      "Night": {
-			        "Icon": 34,
-			        "IconPhrase": "Предимно ясно",
-			        "HasPrecipitation": false
-			      },
-			      "Sources": [
-			        "AccuWeather"
-			      ],
-			      "MobileLink": "http://m.accuweather.com/bg/bg/sofia/51097/daily-weather-forecast/51097?day=1&unit=c",
-			      "Link": "http://www.accuweather.com/bg/bg/sofia/51097/daily-weather-forecast/51097?day=1&unit=c"
-			    }
-			  ]
-			}
+      const promise = await fetch('http://dataservice.accuweather.com/forecasts/v1/daily/1day/51097?apikey=BOqlnuPBUcz9Kiv0LF4dezXCbnlAYogU&language=en-us&details=false&metric=true')
+      const forecastResponse = await promise.json()
+   //    const forecastResponse = {
+			//   "Headline": {
+			//     "EffectiveDate": "2020-08-05T08:00:00+03:00",
+			//     "EffectiveEpochDate": 1596603600,
+			//     "Severity": 5,
+			//     "Text": "сряда: Гръмотевични бури",
+			//     "Category": "thunderstorm",
+			//     "EndDate": "2020-08-05T20:00:00+03:00",
+			//     "EndEpochDate": 1596646800,
+			//     "MobileLink": "http://m.accuweather.com/bg/bg/sofia/51097/extended-weather-forecast/51097?unit=c",
+			//     "Link": "http://www.accuweather.com/bg/bg/sofia/51097/daily-weather-forecast/51097?unit=c"
+			//   },
+			//   "DailyForecasts": [
+			//     {
+			//       "Date": "2020-08-02T07:00:00+03:00",
+			//       "EpochDate": 1596340800,
+			//       "Temperature": {
+			//         "Minimum": {
+			//           "Value": 12,
+			//           "Unit": "C",
+			//           "UnitType": 17
+			//         },
+			//         "Maximum": {
+			//           "Value": 25.8,
+			//           "Unit": "C",
+			//           "UnitType": 17
+			//         }
+			//       },
+			//       "Day": {
+			//         "Icon": 1,
+			//         "IconPhrase": "Слънчево",
+			//         "HasPrecipitation": false
+			//       },
+			//       "Night": {
+			//         "Icon": 34,
+			//         "IconPhrase": "Предимно ясно",
+			//         "HasPrecipitation": false
+			//       },
+			//       "Sources": [
+			//         "AccuWeather"
+			//       ],
+			//       "MobileLink": "http://m.accuweather.com/bg/bg/sofia/51097/daily-weather-forecast/51097?day=1&unit=c",
+			//       "Link": "http://www.accuweather.com/bg/bg/sofia/51097/daily-weather-forecast/51097?day=1&unit=c"
+			//     }
+			//   ]
+			// }
 
-     //  console.log(forecastResponse.DailyForecasts[0].Date)
-	    // console.log(forecastResponse)
 	    this.setState({
 	      forecast: forecastResponse
 	    })

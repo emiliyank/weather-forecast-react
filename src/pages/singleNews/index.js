@@ -4,7 +4,7 @@ import Header from '../../components/header'
 import NewsPost from '../../components/newsPost'
 import HotNewsSidebar from '../../components/hotNewsSidebar'
 import Footer from '../../components/footer'
-import UserContext from '../../context'
+import AppContext from '../../context'
 import FeaturedImage3 from '../../images/featured-image-3.jpg'
 import styles from './index.module.css'
 import cx from 'classnames'
@@ -12,10 +12,10 @@ import cx from 'classnames'
 const SingleNews = (props) => {
 	const [newsList, setNewsList] = useState([])
 	const params = useParams()
-	const context = useContext(UserContext)
+	const context = useContext(AppContext)
   		
   	const fetchNews = async (id) => {
-	  const promise = await fetch(`http://localhost:8000/api/news/${id}`)
+	  const promise = await fetch(`${context.backendApi}/news/${id}`)
 	  const news = await promise.json()
 	  return news
 	}

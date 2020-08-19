@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import './App.css'
 
 import Navigation from './navigation'
-import UserContext from './context'
+import AppContext from './context'
 import { BrowserRouter } from 'react-router-dom'
 import getCookie from './utils/cookie'
-
 
 class App extends Component
 {
@@ -74,14 +73,16 @@ class App extends Component
 		} = this.state
 
 	  return (
-	  	<UserContext.Provider value={{
-	  			loggedIn,
-	  			user,
-	  			logIn: this.logIn,
-	  			logOut: this.logOut
-	  		}}>
-          		{this.props.children}
-        </UserContext.Provider>
+		<AppContext.Provider value={{
+				backendApi: 'http://localhost:8000/api',
+
+				loggedIn,
+				user,
+				logIn: this.logIn,
+				logOut: this.logOut
+			}}>
+	       		{this.props.children}
+	    </AppContext.Provider>
 	  )
 	}
 }

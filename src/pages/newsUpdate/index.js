@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Header from '../../components/header'
 import Footer from '../../components/footer'
-import UserContext from '../../context' 
+import AppContext from '../../context' 
 import styles from './index.module.css'
 import cx from 'classnames'
 
@@ -17,9 +17,12 @@ class NewsUpdate extends Component
 		}
 	}
 
-	static contextType = UserContext
+	static contextType = AppContext
 
 	handleChange = (event, type) => {
+		console.log('news update ')
+		console.log(this.context)
+
 		const newState = {}
 		newState[type] = event.target.value
 
@@ -37,7 +40,7 @@ class NewsUpdate extends Component
 	    } = this.state
 
 	    try{
-	    	const promise = await fetch(`http://localhost:8000/api/news/update/${id}`, {
+	    	const promise = await fetch(`${this.context.backendApi}/news/update/${id}`, {
 		    	method: 'PUT',
 		    	body: JSON.stringify({
 			        title,
@@ -53,7 +56,7 @@ class NewsUpdate extends Component
 				this.props.history.push('/news')
 			} else {
 				const newState = {}
-				newState['errors'] = 'Грешка при попълване на формата!'
+				newState['errors'] = JSON.stringify(response)
 		    	
 		    	this.setState(newState)
 		    	console.log(this.state)
@@ -68,7 +71,7 @@ class NewsUpdate extends Component
 	}
 
 	fetchNews = async (id) => {
-	  const promise = await fetch(`http://localhost:8000/api/news/${id}`)
+	  const promise = await fetch(`${this.context.backendApi}/news/${id}`)
 	  const news = await promise.json()
 	  console.log('fetchNews()')
 	  console.log(promise)
@@ -92,13 +95,10 @@ class NewsUpdate extends Component
 		const { id } = this.props.match.params
 		this.getNews(id)
 
-	    document.title = "Weather Forecasts App - Create News"
-
-	    
+	    document.title = "Weather Forecasts App - Update News"
 	}
 
 	render(){
-		console.log(this.state)
 	  return (
 	    <div className="site-content">
 	    	<Header />
