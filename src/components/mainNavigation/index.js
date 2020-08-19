@@ -2,20 +2,19 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import styles from './index.module.css'
 import cx from 'classnames'
-import UserContext from '../../context'
+import AppContext from '../../context'
 import getNavigationLinks from '../../utils/navigationLinks.js' 
 
 class mainNavigation extends Component 
 {
-	static contextType = UserContext
+	static contextType = AppContext
 
 	render(){
 		const {
-			loggedIn,
-			user
+			loggedIn
 		} = this.context
 
-		const links = getNavigationLinks(loggedIn, user)
+		const links = getNavigationLinks(loggedIn)
 
 		return(
 			<div>

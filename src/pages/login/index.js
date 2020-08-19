@@ -3,7 +3,7 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import styles from './index.module.css'
 import cx from 'classnames'
-import UserContext from '../../context' 
+import AppContext from '../../context' 
 
 class LoginPage extends Component
 {
@@ -17,7 +17,7 @@ class LoginPage extends Component
 		}
 	}
 
-	static contextType = UserContext
+	static contextType = AppContext
 
 	handleChange = (event, type) => {
 		const loginState = {}
@@ -37,7 +37,7 @@ class LoginPage extends Component
 	    //TODO: validate - email & pass are NOT empty
 
 	    try{
-	    	const promise = await fetch('http://localhost:8000/api/login', {
+	    	const promise = await fetch(`${this.context.backendApi}/login`, {
 		    	method: 'POST',
 		    	body: JSON.stringify({
 			        email,
@@ -86,7 +86,6 @@ class LoginPage extends Component
 	}
 
 	render(){
-		console.log(this.context)
 	  return (
 	    <div className="site-content">
 	    	<Header />

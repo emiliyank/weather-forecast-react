@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Header from '../../components/header'
 import Footer from '../../components/footer'
-import UserContext from '../../context' 
+import AppContext from '../../context' 
 import styles from './index.module.css'
 import cx from 'classnames'
 
@@ -17,7 +17,7 @@ class CreateNews extends Component
 		}
 	}
 
-	static contextType = UserContext
+	static contextType = AppContext
 
 	handleChange = (event, type) => {
 		const newState = {}
@@ -38,9 +38,12 @@ class CreateNews extends Component
 	    if(this.context.user){
 	    	author_id = this.context.user.id
 	    }
+	    console.log('handleSubmit()')
+	    console.log(this.context)
+	    console.log(author_id)
 
 	    try{
-	    	const promise = await fetch('http://localhost:8000/api/news/store', {
+	    	const promise = await fetch(`${this.context.backendApi}/news/store`, {
 		    	method: 'POST',
 		    	body: JSON.stringify({
 			        title,
@@ -57,7 +60,7 @@ class CreateNews extends Component
 				this.props.history.push('/news')
 			} else {
 				const newState = {}
-				newState['errors'] = 'Грешка при попълване на формата!'
+				newState['errors'] = JSON.stringify(response)
 		    	
 		    	this.setState(newState)
 		    	console.log(this.state)

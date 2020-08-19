@@ -1,11 +1,9 @@
 import React, {useContext} from 'react'
 import styles from './index.module.css'
-import UserContext from '../../context' 
+import AppContext from '../../context' 
 
 const NewsPost = ({title, author, date, image, content, id, showMore}) => {
-	const context = useContext(UserContext)
-	console.log('context')
-	console.log(context)
+	const context = useContext(AppContext)
 
 	const generateLink = (id) => {
 		return '/singlenews/' + id

@@ -1,4 +1,4 @@
-const getNavigationLinks = (loggedIn, user) => {
+const getNavigationLinks = (loggedIn) => {
 	const authLinks = [
 		{
 			title: 'Home',

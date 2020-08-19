@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import UserContext from '../../context' 
+import AppContext from '../../context' 
 
 class LogoutPage extends Component
 {
-	static contextType = UserContext
+	static contextType = AppContext
 
 	logOut = () => {
 		this.context.logOut()

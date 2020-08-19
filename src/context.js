@@ -1,10 +1,12 @@
 import React from 'react'
 
-const UserContext = React.createContext({
+const AppContext = React.createContext({
+	backendApi: 'http://localhost:8000/api',
+	
 	loggedIn: false,
 	user: null,
 	logIn: () => {},
 	logOur: () => {}
 })
 
-export default UserContext
+export default AppContext
