@@ -5,6 +5,7 @@ Weather forecast web app. This is a learning project developed on ReactJS. Weath
 
 ## Backend
 Backend is developed on Lumen (Laravel micro framework) with MariaDB database.
+Backend code is available here: https://github.com/emiliyank/weather-news-backend
 
 ## Architecture
 Since it is a learning project there are more experiments and using different styles instead of consistency. Half of the components are class components and the other half function components with Hooks.

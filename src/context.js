@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AppContext = React.createContext({
-	backendApi: 'http://localhost:8000/api',
+	backendApi: 'http://inveit280.voyager.icnhost.net/learning/weather-news/public/api',
 	
 	loggedIn: false,
 	user: null,

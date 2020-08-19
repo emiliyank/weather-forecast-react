@@ -1,12 +1,14 @@
-import React, { useState, useCallback, useEffect, useMemo }  from 'react'
+import React, { useState, useContext, useCallback, useEffect, useMemo }  from 'react'
+import AppContext from '../../context'
 import styles from './index.module.css'
 import cx from 'classnames'
 
 const HotNewsSidebar = (props) => {
 	const [newsList, setNewsList] = useState([])
+	const context = useContext(AppContext)
   		
   	const fetchNews = async (count) => {
-	  const promise = await fetch(`http://localhost:8000/api/news/list/${count}`)
+	  const promise = await fetch(`${context.backendApi}/news/list/${count}`)
 	  const news = await promise.json()
 	  return news
 	}

@@ -74,7 +74,7 @@ class App extends Component
 
 	  return (
 		<AppContext.Provider value={{
-				backendApi: 'http://localhost:8000/api',
+				backendApi: 'http://inveit280.voyager.icnhost.net/learning/weather-news/public/api',
 
 				loggedIn,
 				user,

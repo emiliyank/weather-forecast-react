@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import AppContext from '../../context'
 import styles from './index.module.css'
 import cx from 'classnames'
 import NewsPost from '../newsPost'
@@ -16,10 +17,11 @@ class NewsList extends Component
 	      newsList: []
 	    }
   	}
+  	static contextType = AppContext
 
 	fetchNews = async () => {
 	    //Fetch all news
-	    const promise = await fetch('http://localhost:8000/api/news', {
+	    const promise = await fetch(`${this.context.backendApi}/news`, {
 			    method: 'GET',
 			    headers: {
 			    	'Content-Type': 'application/json'
