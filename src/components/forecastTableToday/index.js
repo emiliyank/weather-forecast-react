@@ -17,7 +17,6 @@ class ForecastTableToday extends Component
   	}
 
 	getForecast = async () => {
-		//TODO: fetch location (by IP) instead of hardcoding 51097
       //Daily forecast.
       const promise = await fetch('http://dataservice.accuweather.com/forecasts/v1/daily/1day/51097?apikey=BOqlnuPBUcz9Kiv0LF4dezXCbnlAYogU&language=en-us&details=false&metric=true')
       const forecastResponse = await promise.json()

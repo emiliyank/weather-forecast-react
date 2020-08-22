@@ -44,7 +44,7 @@ class App extends Component
 	    	return
 	    }
 
-	    fetch('http://localhost:8000/api/me', {
+	    fetch('http://inveit280.voyager.icnhost.net/learning/weather-news/public/api/me', {
 	    	method: 'POST',
 	    	body: JSON.stringify({
 	    		token

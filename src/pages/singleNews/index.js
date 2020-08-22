@@ -26,13 +26,11 @@ const SingleNews = (props) => {
 	}, [params.id])
 
 	const renderNews = useMemo(() => {
-		console.log('newsList')
-		console.log(newsList)
 		if(typeof newsList != "undefined" && newsList.news){
 			    return (
 			      <NewsPost
 					title={newsList.news.title}
-					author={newsList.news.author ? newsList.news.author.name : 'няма'}
+					author={newsList.news.author ? newsList.news.author.name : 'none'}
 					date={newsList.news.created_at}
 					image={FeaturedImage3}
 					content={newsList.news.content}
