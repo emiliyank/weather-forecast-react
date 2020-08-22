@@ -32,7 +32,6 @@ const NewsSection = (props) => {
 			    )
 			  })
 		} else if (newsList.news && newsList.news.length <= 0) {
-			console.log('we are supposed to be here!')
 			return (
 				<div> 
 					No News Yet! You can <a href="/register"> Register </a> and add news to the site! 
