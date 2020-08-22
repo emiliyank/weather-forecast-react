@@ -19,6 +19,12 @@ const RegisterPage = () => {
 	const handleSubmit = async (event) => {
 	    event.preventDefault()
 
+	    //front-end validation
+	    if(name < 3 || email < 6 || password < 6){
+	    	setErrors("Front-end validation failed! Name must be at least 3 symbols, email and password must be at least 6 symbold!")
+	    	return
+	    }
+
 	    try{
 	    	const promise = await fetch(`${context.backendApi}/register`, {
 		    	method: 'POST',

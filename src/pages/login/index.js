@@ -33,8 +33,14 @@ class LoginPage extends Component
 	      email,
 	      password
 	    } = this.state
+	    const loginState = {}
 
-	    //TODO: validate - email & pass are NOT empty
+	    //front-end validation
+	    if(email.length < 6 || password.length < 6){
+	    	loginState['errors'] = "Front-end validation failed! Email and password should be at least 6 symbols long!"
+	    	this.setState(loginState)
+	    	return
+	    }
 
 	    try{
 	    	const promise = await fetch(`${this.context.backendApi}/login`, {
@@ -62,22 +68,19 @@ class LoginPage extends Component
 				this.context.logIn(user)
 				this.props.history.push('/')
 			} else {
-				const loginState = {}
 				if(response.message == 'Unauthorized'){
-					loginState['errors'] = "Грешен потребител и/или парола!"
+					loginState['errors'] = "Wrong user and/or password!"
 				} else {
 					loginState['errors'] = JSON.stringify(response.message)
 				}
 		    	
 		    	this.setState(loginState)
-		    	console.log(this.state)
 			}
 	    } catch(e) {
 	    	console.log(e)
 	    	const loginState = {}
 	    	loginState['errors'] = e
 	    	this.setState(loginState)
-	    	console.log(this.state)
 	    }
 	}
 
