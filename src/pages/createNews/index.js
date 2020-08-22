@@ -39,6 +39,13 @@ class CreateNews extends Component
 	    	author_id = this.context.user.id
 	    }
 
+	    //front-end validatoin
+	    let newState = {}
+	    if(title.length < 1 || content.length < 1){
+	    	this.setState({errors: "Front-end validation fails! Title and content cannot be empty!"})
+	    	return
+	    }
+
 	    try{
 	    	const promise = await fetch(`${this.context.backendApi}/news/store`, {
 		    	method: 'POST',
@@ -56,18 +63,13 @@ class CreateNews extends Component
 			if(promise.status == 200 || promise.status == 201){
 				this.props.history.push('/news')
 			} else {
-				const newState = {}
 				newState['errors'] = JSON.stringify(response)
-		    	
 		    	this.setState(newState)
-		    	console.log(this.state)
 			}
 	    } catch(e) {
 	    	console.log(e)
-	    	const newState = {}
 	    	newState['errors'] = e
 	    	this.setState(newState)
-	    	console.log(this.state)
 	    }
 	}
 

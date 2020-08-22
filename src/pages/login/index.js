@@ -33,7 +33,7 @@ class LoginPage extends Component
 	      email,
 	      password
 	    } = this.state
-	    const loginState = {}
+	    let loginState = {}
 
 	    //front-end validation
 	    if(email.length < 6 || password.length < 6){
@@ -78,7 +78,6 @@ class LoginPage extends Component
 			}
 	    } catch(e) {
 	    	console.log(e)
-	    	const loginState = {}
 	    	loginState['errors'] = e
 	    	this.setState(loginState)
 	    }

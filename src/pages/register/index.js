@@ -20,8 +20,11 @@ const RegisterPage = () => {
 	    event.preventDefault()
 
 	    //front-end validation
-	    if(name < 3 || email < 6 || password < 6){
+	    if(name.length < 3 || email.length < 6 || password.lenght < 6){
 	    	setErrors("Front-end validation failed! Name must be at least 3 symbols, email and password must be at least 6 symbold!")
+	    	return
+	    } else if(password != passwordConfirmation) {
+	    	setErrors("Front-end validation failed! Passwords does not match!")
 	    	return
 	    }
 
