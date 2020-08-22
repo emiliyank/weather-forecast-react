@@ -38,9 +38,6 @@ class CreateNews extends Component
 	    if(this.context.user){
 	    	author_id = this.context.user.id
 	    }
-	    console.log('handleSubmit()')
-	    console.log(this.context)
-	    console.log(author_id)
 
 	    try{
 	    	const promise = await fetch(`${this.context.backendApi}/news/store`, {

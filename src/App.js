@@ -18,8 +18,6 @@ class App extends Component
 	}
 
 	logIn = (user) => {
-		console.log('logIn()')
-		console.log(user)
 		this.setState({
 			loggedIn: true,
 			user
@@ -58,12 +56,9 @@ class App extends Component
 	    	return promise.json()
 	    }).then(response => {
 	    	if(response.id){
-	    		console.log('base componentDidMount()')
-	    		console.log(response)
 	    		this.logIn(response)
 	    	}
 	    })
-
 	}
 
 	render(){

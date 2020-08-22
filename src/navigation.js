@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
-
+import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from './pages/home'
 import News from './pages/news'
 import SingleNews from './pages/singleNews'
@@ -10,13 +9,14 @@ import LoginPage from './pages/login'
 import RegisterPage from './pages/register'
 import LogoutPage from './pages/logout'
 import CreateNews from './pages/createNews'
-import UserContext from './context' 
+import AppContext from './context' 
 
 class Navigation extends Component 
 {
-	static contextType = UserContext
+	static contextType = AppContext
 
 	render(){
+		const loggedIn = this.context.loggedIn
 		return(
 			<Switch>
 				<Route path="/" exact component={Home} activeClassName="activeNav"/>
@@ -24,7 +24,9 @@ class Navigation extends Component
 				<Route path="/singlenews/:id" component={SingleNews} />
 				<Route path="/updatenews/:id" component={NewsUpdate} />
 				<Route path="/deletenews/:id" component={NewsDelete} />
-				<Route path="/create-news" component={CreateNews}/>
+
+				<Route path="/create-news" component={CreateNews} />
+
 				<Route path="/login" component={LoginPage}/>
 				<Route path="/register" component={RegisterPage}/>
 				<Route path="/logout" component={LogoutPage}/>
